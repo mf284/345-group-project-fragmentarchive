@@ -2,7 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ mf284_working ]
+    branches: [ mf284_repair ]
   pull_request:
     branches: [ main ]
 
