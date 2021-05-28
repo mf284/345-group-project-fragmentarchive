@@ -25,12 +25,10 @@
         <action
             android:id="@+id/action_logDisplayFragment_to_poemMainFragment"
             app:destination="@id/poemMainFragment" />
+        <action
+            android:id="@+id/action_logDisplayFragment_to_poemMainFragment2"
+            app:destination="@id/poemMainFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/poemLogListFragment"
-        android:name="com.poemgen.mockspire.PoemLogListFragment"
-        android:label="fragment_poem_log_list"
-        tools:layout="@layout/fragment_poem_log_list" />
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.poemgen.mockspire.HelpFragment"
@@ -38,6 +36,9 @@
         tools:layout="@layout/fragment_help" >
         <action
             android:id="@+id/action_helpFragment_to_poemMainFragment"
+            app:destination="@id/poemMainFragment" />
+        <action
+            android:id="@+id/action_helpFragment_to_poemMainFragment2"
             app:destination="@id/poemMainFragment" />
     </fragment>
 </navigation>

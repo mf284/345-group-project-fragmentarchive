@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.poemgen.mockspire.poemgenerator.ai.MockGenerator
+import com.poemgen.mockspire.poemgenerator.record.Garden
+import com.poemgen.mockspire.poemgenerator.record.Poem
 
 class PoemMainViewModel : ViewModel() {
 
@@ -32,12 +34,14 @@ class PoemMainViewModel : ViewModel() {
 
     fun submitPrompt(prompt: String) {
         poemGenerator.submitPrompt(prompt)
-//        _poemText.postValue(poemGenerator.getPoem())
+        var content = poemGenerator.getPoem()
 
-//        _poemText.postValue(SpannableString(poemGenerator.getPoem()))
+        var newPoem = Poem(prompt, content)
+
+        // Add to log
+        Garden.seeds.add(newPoem)
+
         _poemText.postValue(generateSpannables(poemGenerator.getPoem()))
-//        Log.d("Mock", "Generating")
-//        generateSpannables(prompt, )
 
     }
 
@@ -46,7 +50,6 @@ class PoemMainViewModel : ViewModel() {
     }
 
     fun generateSpannables(text: String): SpannableString {
-        val nonLetterIndices = mutableListOf<Int>()
         val outputSpannable = SpannableString(text)
 
         val tempClickable = object : ClickableSpan() {
@@ -57,32 +60,6 @@ class PoemMainViewModel : ViewModel() {
         }
         outputSpannable.setSpan(tempClickable, 0, 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-
-//        for (i in text.indices) {
-//            if (!text[i].isLetter()) {
-//                nonLetterIndices.add(i)
-//
-//                val start: Int
-//
-//                if (nonLetterIndices.size >= 1) {
-//                    start = 0
-//                } else {
-//                    start = nonLetterIndices.last() + 1
-//                }
-//
-//                val subText = text.substring(start, i)
-//
-//                val tempClickable = object: ClickableSpan() {
-//                    override fun onClick(widget: View) {
-//                        Log.d("Mock", "heyoo")
-//                    }
-//                }
-//
-//                outputSpannable.setSpan(tempClickable, start, i, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-//
-//            }
-//
-//        }
         return outputSpannable
     }
 

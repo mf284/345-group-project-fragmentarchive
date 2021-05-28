@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.poemgen.mockspire.databinding.FragmentPoemMainBinding
 import com.poemgen.mockspire.model.PoemMainViewModel
@@ -19,6 +21,8 @@ class PoemMainFragment : Fragment() {
     // Data/View boilerplate
     private var binding: FragmentPoemMainBinding? = null
     private val sharedViewModel: PoemMainViewModel by activityViewModels()
+
+    private val gpt2: com.poemgen.mockspire.ml.GPT2Client by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +44,11 @@ class PoemMainFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
+//            viewModel = gpt2
             poemMainFragment = this@PoemMainFragment
         }
+
+
     }
 
 

@@ -12,6 +12,10 @@
         <variable
             name="poemMainFragment"
             type="com.poemgen.mockspire.PoemMainFragment" />
+
+        <variable
+            name="vm"
+            type="com.poemgen.mockspire.ml.GPT2Client" />
     </data>
 
     <LinearLayout
