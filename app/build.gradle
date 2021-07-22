@@ -5,7 +5,19 @@ plugins {
     id 'kotlin-android-extensions'
     id "org.jetbrains.kotlin.kapt"
     id "org.jetbrains.dokka"
+
+    id 'com.dicedmelon.gradle.jacoco-android' //Coverage
 }
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+tasks.withType(Text) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*'] // https://github.com/gradle/gradle/issues/5184
+}
+
 
 android {
     compileSdkVersion 29
@@ -33,6 +45,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true // https://github.com/codecov/example-android
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
