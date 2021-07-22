@@ -4,7 +4,10 @@ buildscript {
     repositories {
         google()
         jcenter()
-        mavenCentral() //For jacoco
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        } //For jacoco
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
